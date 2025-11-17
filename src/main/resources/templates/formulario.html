@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${nota.id} != null ? 'Editar nota' : 'Nueva nota'"></title>
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+            rel="stylesheet">
+</head>
+<body class="container mt-4">
+<h1 th:text="${nota.id} != null ? 'Editar nota' : 'Nueva nota'"></h1>
+
+<form th:action="@{/guardar}" th:object="${nota}" method="post">
+
+    <input type="hidden" th:field="*{id}" />
+
+    <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" th:field="*{titulo}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Contenido</label>
+        <textarea th:field="*{contenido}" class="form-control" rows="4" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="/" class="btn btn-secondary">Cancelar</a>
+</form>
+</body>
+</html>
